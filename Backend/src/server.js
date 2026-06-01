@@ -5,7 +5,7 @@ import { ENV } from "./lib/env.js";
 import cookieParser from "cookie-parser";
 
 import authRoutes from './routes/auth.route.js'
-import messageRoutes from './routes/messages.route.js';
+import messageRoutes from './routes/message.route.js';
 import { connectDB } from "./lib/db.js";
 
 const app = express();
