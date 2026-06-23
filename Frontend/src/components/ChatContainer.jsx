@@ -7,14 +7,29 @@ import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton.jsx";
 import MessageInput from "./MessageInput.jsx";
 
 function ChatContainer() {
-  const { getMessagesByUserId, selectedUser, messages, isMessagesLoading } =
-    useChatStore();
+  const {
+    getMessagesByUserId,
+    selectedUser,
+    messages,
+    isMessagesLoading,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
 
   useEffect(() => {
     getMessagesByUserId(selectedUser._id);
-  }, [selectedUser, getMessagesByUserId]);
+    subscribeToMessages();
+
+    // Clean up (for Performance)
+    return () => unsubscribeFromMessages();
+  }, [
+    selectedUser,
+    getMessagesByUserId,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  ]);
 
   // Automatically scroll to latest message
   useEffect(() => {
@@ -49,7 +64,7 @@ function ChatContainer() {
                   {msg.text && <p>{msg.text}</p>}
 
                   <p className="text-xs mt-1 opacity-75 flex items-center gap-1">
-                    {new Date(msg.createdAt).toLocaleTimeString( undefined, {
+                    {new Date(msg.createdAt).toLocaleTimeString(undefined, {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}
