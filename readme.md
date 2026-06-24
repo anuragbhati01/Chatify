@@ -319,19 +319,19 @@ npm run dev
 ## Login Page
 
 ```md
-![Login](./screenshots/login.png)
+![Login](./screenshots/Login.png)
 ```
 
-## Chat Interface
+## Signup Interface
 
 ```md
-![Signup](./screenshots/signup.png)
+![Signup](./screenshots/Signup.png)
 ```
 
 ## Profile Page
 
 ```md
-![Profile](./screenshots/profile.png)
+![Profile](./screenshots/Profile.png)
 ```
 
 ---
